@@ -29,7 +29,15 @@ pos_file=$strand_file.pos
 flip_file=$strand_file.flip
 cat $strand_file | cut -f 1,2 > $chr_file
 cat $strand_file | cut -f 1,3 > $pos_file
-cat $strand_file | awk '{if ($5=="-") print $0}' | cut -f 1 > $flip_file
+cat $strand_file | awk '($4=="-" || $5=="-") { print $1 }' > $flip_file
+flip_len=$(wc -l $flip_file | cut -d ' ' -f 1)
+if (($flip_len < 1)); then
+    echo "Warning: No strands will be flipped" >&2
+else
+    echo "$flip_len strands will be flipped" 
+fi
+
+
 
 #Because Plink only allows you to update one attribute at a time, we need lots of temp
 #Plink files
