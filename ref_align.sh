@@ -72,7 +72,7 @@ ${plink} --noweb --bfile ${chrdata} --make-bed --out ${chrdata}
 
 # 3. Some SNP positions will match but SNP IDs will have changed
 cp ${chrdata}.bim ${chrdata}.bim.orig-snp-ids
-R --no-save --args ${chrdata}.bim ${reflegend} ${chrdata}.newpos < ${rs_updateR}
+R --no-save --args ${chrdata}.bim ${reflegend} ${chrdata}.newpos ${refphase} < ${rs_updateR}
 
 # Remove duplicated SNPs
 R --no-save --args ${chrdata} ${plink} < ${removedupsnpsR}
