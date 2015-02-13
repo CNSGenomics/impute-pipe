@@ -10,6 +10,7 @@ bimfile <- paste(args[1], ".orig-snp-ids", sep="")
 reffile <- args[2]
 outbim <- args[1]
 outname <- args[3]
+refphase <- args[4]
 
 bim <- read.table(bimfile)
 ref <- read.table(reffile, header=T)
@@ -17,8 +18,16 @@ ref <- read.table(reffile, header=T)
 ref$index <- 1:nrow(ref)
 bim$index <- 1:nrow(bim)
 
+#choose correct header scheme for different phase reference sets
+if (refphase==1) {
+    names(ref) <- c("SNP", "pd", "a1", "a2", "afr.aaf", "amr.aaf", "asn.aaf", "eur.aaf", "afr.maf", "amr.maf", "asn.maf", "eur.maf", "index")
+} else if (refphase==3) {
+    names(ref) <- c("SNP", "pd", "a1", "a2", "TYPE", "AFR", "AMR", "EAS", "EUR", "SAS", "ALL", "index")
+} else {
+    cat("\nError - refphase not found in rs_update\n")
+    quit()
+}
 
-names(ref) <- c("SNP", "pd", "a1", "a2", "afr.aaf", "amr.aaf", "asn.aaf", "eur.aaf", "afr.maf", "amr.maf", "asn.maf", "eur.maf", "index")
 names(bim) <- c("chr", "SNP", "gd", "pd", "a1", "a2", "index")
 dim(ref)
 dim(bim)
