@@ -41,7 +41,7 @@ interval=5000000
 
 # Target data information (after cleaning using strand_align.sh)
 rawdata="${wd}data/target/dataname"
-originaldata="${wd}data/target/dataname_flipped"
+originaldata="${wd}data/target/dataname_filter"
 chrdata="DAT${chr}"
 shortname="dat${chr}"
 strand_file="${wd}data/target/strand/chipname.strand"
@@ -58,6 +58,8 @@ plink1kg="dataname_1kg_p1v3_${chr}"
 # Filtering thresholds
 filterMAF="0.01"
 filterHWE="0.01"
+filtergeno="0.02"
+filtermind="0.1"
 filterInfo="0.8"
 
 # Filtering output name
