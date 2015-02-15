@@ -89,7 +89,7 @@ This file has all the options required for the imputation process. It should be 
 
 In order to determine whether imputation will result in high-quality data, it is important to perform a few quality control checks before proceeding. The QC process is performed by executing
 
-        ./check_strand.sh
+    ./check_strand.sh
 
 This script will generate some allele frequeny plots, and strand information stats that will help inform whether or not to proceed with imputation with the data as is. In particular, the output generated in `data/qc/` consists of:
 
@@ -99,6 +99,16 @@ This script will generate some allele frequeny plots, and strand information sta
  4. A plaintext list of palindromic SNPs, for exclusion using PLINK.
 
 The main objective of these QC checks is to determine issues that may arise in the following strand alignment step. For example: data that has previously been aligned to the reference will not require any allelic flipping, and using the wrong strand file to align data will result in poor concordance with the reference dataset. Both of these issues can be identified by viewing the allele frequency plots, and examining the strand summary file.
+
+If the output meets your expectations, proceed to execute
+
+    ./filter_pre.sh
+
+to create a filtered dataset for imputation (filtered on identified palindromic SNPs, and  missingness per individual, missingness per marker, Hardy-Weinberg equilibrium and minor allele frequency, as set in `parameters.sh`).
+
+
+* * *
+
 
 ### 4. Align the **target** to the **reference** data
 
