@@ -85,8 +85,22 @@ This file has all the options required for the imputation process. It should be 
 
 * * *
 
+### 3. Perform pre-imputation quality control checks
 
-### 3. Align the **target** to the **reference** data
+In order to determine whether imputation will result in high-quality data, it is important to perform a few quality control checks before proceeding. The QC process is performed by executing
+
+        ./check_strand.sh
+
+This script will generate some allele frequeny plots, and strand information stats that will help inform whether or not to proceed with imputation with the data as is. In particular, the output generated in `data/qc/` consists of:
+
+ 1. Allele frequency plots of the reference dataset against the target dataset, before and after strand alignment (see section 3 below for information on strand alignment).
+ 2. An allele frequency information file for each chromosome, indicating the major allele and its frequency in the target dataset, before and after strand alignment, as well as in the reference dataset.
+ 3. A strand summary file for the whole genome, indicating the percent concordance between major alleles in the target and reference datasets, before and after strand alignment, as well as the number of ambiguous 'palindromic' SNPs (i.e. those SNPs with alleles either `AT` or `CG`).
+ 4. A plaintext list of palindromic SNPs, for exclusion using PLINK.
+
+The main objective of these QC checks is to determine issues that may arise in the following strand alignment step. For example: data that has previously been aligned to the reference will not require any allelic flipping, and using the wrong strand file to align data will result in poor concordance with the reference dataset. Both of these issues can be identified by viewing the allele frequency plots, and examining the strand summary file.
+
+### 4. Align the **target** to the **reference** data
 
 This is a two step process. 
 
@@ -113,7 +127,7 @@ The output from this will be binary `plink` files for each chromosome located in
 * * *
 
 
-### 4. Perform haplotyping
+### 5. Perform haplotyping
 
 This uses [Amy Williams][6]' excellent haplotyping programme [`hapi-ur`][1]. We perform the haplotyping three times on each chromosome:
 
@@ -140,7 +154,7 @@ The output from this will be three haplotype file sets for each chromosome, as w
 * * *
 
 
-### 5. Imputation
+### 6. Imputation
 
 Most likely the lengthiest and most memory demanding stage. By running
 
@@ -168,7 +182,7 @@ The outputs from this script will be imputed dosages, haplotypes and best-guess 
 * * *
 
 
-### 6. Stitching the imputation chunks into whole chromosomes
+### 7. Stitching the imputation chunks into whole chromosomes
 
 This will stitch together the 5Mb chunks for each chromosome:
 
@@ -191,7 +205,7 @@ Imputed data for entire chromosomes in:
 * * *
 
 
-### 7. Filtering
+### 8. Filtering
 
 The final stage is to filter on MAF and HWE. The thresholds can be amended in the `parameter.sh` file.
 
