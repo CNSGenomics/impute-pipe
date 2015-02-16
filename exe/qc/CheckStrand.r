@@ -1,7 +1,7 @@
 #-------------------------------------------------------------------------------
 # Plot allele frequencies against each other
 #-------------------------------------------------------------------------------
-source("/clusterdata/uqahollo/scripts/cage/fun/CompareMaf.r")
+source("exe/qc/CompareMaf.r")
 args    <- commandArgs(TRUE)
 x.frq   <- args[1]  # path to GCTA .freq file for target dataset
 y.frq   <- args[2]
