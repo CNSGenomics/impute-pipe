@@ -1,50 +1,41 @@
 #!/bin/bash
 
 #$ -N hap
-#$ -t 1-66
+#$ -t 1-22
 #$ -S /bin/bash
 #$ -cwd
 #$ -o job_reports/
 #$ -e job_reports/
-#$ -l h_vmem=10G
+#$ -l h_vmem=4G
+#$ -pe onehost 8
 
 # This script will take a reference-aligned binary plink file and:
-# 1. For each chromosome perform hapi-ur haplotyping 3 times
-
-
-
-nrep="3"
-nchr="22"
-
-if [ -n "${1}" ]; then
-  SGE_TASK_ID=${1}
-fi
-
-
-SGE_TASK_ID=`expr ${SGE_TASK_ID} - 1`
-
-chr=`expr ${SGE_TASK_ID} % ${nchr} + 1`
-rep=`expr ${SGE_TASK_ID} % ${nrep} + 1`
+# 1. For each chromosome perform shapeit
 
 set -e
-
-echo "chr = ${chr}"
-echo "rep = ${rep}"
-
-wd=`pwd`"/"
-
-source parameters.sh
-
-cd ${targetdatadir}
-
-
-wsize=`echo "36.62 + ${nsnp} * 0.00007" | bc -l | xargs printf "%1.0f"`
-echo "window size = ${wsize}"
-if [ ${wsize} -lt 64 ]; then
-  wsize=64
+if [ -n "${1}" ]; then
+    SGE_TASK_ID=${1}
 fi
 
+#echo "Running on host: ${HOSTNAME}"
 
-hapout="${hapdatadir}${chrdata}_${rep}"
-${hapi_ur} -p ${chrdata} -o ${hapout} -w ${wsize} --impute2
+chr=${SGE_TASK_ID}
+wd=`pwd`"/"
+source parameters.sh
 
+if [ ! -d "${hapdatadir}" ]; then
+    mkdir ${hapdatadir}
+fi
+
+if [ ! -d "${impdatadir}" ]; then
+    mkdir ${impdatadir}
+fi
+
+cd ${targetdatadir}
+flags="--thread 8 --noped"
+
+#if [ "${chr}" -eq "23" ]; then
+#    flags="$flags --chrX"
+#fi
+
+${shapeit2} --input-bed ${chrdata}.bed ${chrdata}.bim ${chrdata}.fam --input-map ${refgmap} --output-max ${hapout}.haps ${hapout}.sample ${flags}
