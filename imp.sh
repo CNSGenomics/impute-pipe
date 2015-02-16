@@ -34,16 +34,8 @@ if [ ! -d "${impdatadir}job_reports" ]; then
   mkdir ${impdatadir}job_reports
 fi
 
-# 1. haplotype voting
 
-
-
-hapout="${hapdatadir}${chrdata}"
-${vote_phase} -i ${hapout}_1.haps ${hapout}_2.haps ${hapout}_3.haps > ${hapout}.haps
-cp ${hapout}_1.sample ${hapout}.sample
-
-
-# 2. spawn imputation script
+# 1. spawn imputation script
 # - this will be broken up into windows
 # - impute2 will be used for imputation
 # - it uses 250kb overlaps automatically

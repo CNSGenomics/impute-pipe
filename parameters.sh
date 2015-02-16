@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 plink="${wd}exe/plink"
-hapi_ur="${wd}exe/hapi-ur"
+shapeit2="${wd}exe/shapeit"
 impute2="${wd}exe/impute2"
 liftOver="${wd}exe/liftOver"
 vote_phase="${wd}exe/vote-phase"
@@ -45,6 +45,9 @@ originaldata="${wd}data/target/dataname_filter"
 chrdata="DAT${chr}"
 shortname="dat${chr}"
 strand_file="${wd}data/target/strand/chipname.strand"
+
+#Haplotype files
+hapout="${hapdatadir}${chrdata}"
 
 # LiftOver chain
 lochain="${wd}exe/hg18ToHg19.over.chain"
