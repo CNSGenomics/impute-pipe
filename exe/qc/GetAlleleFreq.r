@@ -11,6 +11,6 @@ wd   <- args[6]
 flag <- as.logical(args[7])
 #-------------------------------------------------------------------------------
 setwd(wd)
-source("exe/AuxiliaryQC.r")
-source("exe/WriteAlleleFreq.r")
+source("exe/qc/AuxiliaryQC.r")
+source("exe/qc/WriteAlleleFreq.r")
 WriteAlleleFreq(trg, flip, ref, bim, str, wd, flag)
