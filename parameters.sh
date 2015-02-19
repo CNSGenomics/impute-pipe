@@ -26,7 +26,7 @@ filterinfoR="${wd}exe/filterinfo.R"
 targetdatadir="${wd}data/target/chr${chr}/"
 hapdatadir="${wd}data/haplotypes/chr${chr}/"
 impdatadir="${wd}data/imputed/chr${chr}/"
-refdatadir="${wd}data/reference/"
+refdatadir="/ibscratch/wrayvisscher/reference_data/1000_genomes/ALL_1000G_phase1integrated_v3_impute/"
 
 # Reference data file locations
 reflegend="${refdatadir}ALL_1000G_phase1integrated_v3_chr${chr}_impute.legend.gz"
