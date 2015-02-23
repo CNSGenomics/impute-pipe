@@ -6,6 +6,8 @@ impute2="${wd}exe/impute2"
 liftOver="${wd}exe/liftOver"
 vote_phase="${wd}exe/vote-phase"
 bgl_to_ped="${wd}exe/bgl_to_ped"
+gcta="${wd}exe/gcta64"
+gcta_ref="${wd}exe/gcta64_updateref"
 
 positionsR="${wd}exe/positions.R"
 modmarkersR="${wd}exe/modmarkers.R"
@@ -27,6 +29,11 @@ targetdatadir="${wd}data/target/chr${chr}/"
 hapdatadir="${wd}data/haplotypes/chr${chr}/"
 impdatadir="${wd}data/imputed/chr${chr}/"
 refdatadir="/ibscratch/wrayvisscher/reference_data/1000_genomes/ALL_1000G_phase1integrated_v3_impute/"
+qcdatadir="${wd}data/qc/"
+
+# file stems for quality control (see `check_strand.sh`)
+refstem=""
+targetstem=""
 
 # Reference data file locations
 reflegend="${refdatadir}ALL_1000G_phase1integrated_v3_chr${chr}_impute.legend.gz"
