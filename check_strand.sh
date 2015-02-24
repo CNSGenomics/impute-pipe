@@ -76,5 +76,5 @@ for chr in {1..22}; do
     "${rawdata}.bim" \
     ${strand_file} \
     ${wd} \
-    "TRUE"
+    "FALSE"
 done
