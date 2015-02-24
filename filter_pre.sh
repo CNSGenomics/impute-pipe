@@ -9,4 +9,4 @@
 
 source parameters.sh
 
-plink2 --noweb --bfile ${rawdata} --hwe ${filterHWE} --maf ${filterMAF} --geno ${filtergeno} --mind ${filtermind} --exclude "${out}exclude.txt" --make-bed --out "${rawdata}_filter"
+${plink} --noweb --bfile ${rawdata} --hwe ${filterHWE} --maf ${filterMAF} --geno ${filtergeno} --mind ${filtermind} --exclude "${qcdatadir}exclude.txt" --make-bed --out "${rawdata}_filter"
