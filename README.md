@@ -34,6 +34,7 @@ Runtime is fast thanks to some great software that is freely available (see belo
 - Dosage imputed data in `impute2` format
 - 'Best-guess' imputed data in binary `plink` format
 - 'Best-guess' imputed data, filtered for MAF and HWE in binary `plink` format
+- Optional SNP2HLA imputation
 
 
 
@@ -201,6 +202,16 @@ This will stitch together the 5Mb chunks for each chromosome:
 Again, a single chromosome can be executed in the frontend by running:
 
     ./stitch_plink.sh
+
+### 8. Optional - HLA Imputation
+
+This will run HLA imputation on the genotype data for chromosome 6
+
+    qsub hla.sh
+
+The data can be found in 
+
+    data/imputation/hla/
 
 
 #### Output
