@@ -31,8 +31,9 @@ impdatadir="${wd}data/imputed/chr${chr}/"
 refdatadir="/ibscratch/wrayvisscher/reference_data/1000_genomes/ALL_1000G_phase1integrated_v3_impute/"
 qcdatadir="${wd}data/qc/"
 
-# Set info - change for each run if splitting imputation into sets #eg. s0, s1
-sampleset="_s0"
+# change for each run if splitting imputation into sets #eg. _set0, _set1
+# otherwise leave blank for normal imputation
+sampleset=""
 splitsamplesize=15000 
 
 # file stems for quality control (see `check_strand.sh`)
@@ -52,9 +53,9 @@ interval=5000000
 
 # Target data information (after cleaning using strand_align.sh)
 rawdata="${wd}data/target/dataname"
-originaldata="${wd}data/target/dataname_filter"
-chrdata="DAT${chr}"
-shortname="dat${chr}"
+originaldata="${wd}data/target/dataname_filter"${sampleset}
+chrdata="DAT${chr}"${sampleset}
+shortname="dat${chr}"${sampleset}
 strand_file="${wd}data/target/strand/chipname.strand"
 
 #Haplotype files
