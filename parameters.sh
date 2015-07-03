@@ -31,6 +31,10 @@ impdatadir="${wd}data/imputed/chr${chr}/"
 refdatadir="/ibscratch/wrayvisscher/reference_data/1000_genomes/ALL_1000G_phase1integrated_v3_impute/"
 qcdatadir="${wd}data/qc/"
 
+# Set info - change for each run if splitting imputation into sets #eg. s0, s1
+sampleset="_s0"
+splitsamplesize=15000 
+
 # file stems for quality control (see `check_strand.sh`)
 refstem=""
 targetstem=""
