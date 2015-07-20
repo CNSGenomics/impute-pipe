@@ -16,7 +16,13 @@ set -e
 wd=`pwd`"/"
 source ${wd}parameters.sh
 
-stem=${rawdata}
+if [ -f ${originaldata}.bed ];
+then
+   stem=${originaldata}
+else
+   stem=${rawdata}
+fi
+
 outstem=${originaldata}
 
 echo Input stem is $stem
