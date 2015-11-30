@@ -20,7 +20,7 @@ mkdir -p "${qcdatadir}plots"
 for chr in {1..22}; do
   # TODO: check encoding of alleles (1234 -> ACGT)
   outdir="${qcdatadir}chr${chr}/"
-  mkdir ${outdir}
+  mkdir -p ${outdir}
   # create reference frequencies
   ${gcta} --bfile ${refdatadir}${refstem}${chr} --freq --out ${outdir}${refstem}${chr}
   # ignore SNPs that are not common between reference and target
