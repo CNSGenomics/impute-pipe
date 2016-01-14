@@ -44,6 +44,7 @@ targetstem=""
 reflegend="${refdatadir}ALL_1000G_phase1integrated_v3_chr${chr}_impute.legend.gz"
 refhaps="${refdatadir}ALL_1000G_phase1integrated_v3_chr${chr}_impute.hap.gz"
 refgmap="${refdatadir}genetic_map_chr${chr}_combined_b37.txt"
+refsample="${refdatadir}ALL_1000G_phase1integrated_v3.sample"
 
 # Reference data phase
 refphase=1

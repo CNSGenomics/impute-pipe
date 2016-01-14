@@ -38,4 +38,13 @@ flags="--thread 8 --noped"
 #    flags="$flags --chrX"
 #fi
 
+# If less than 100 indivduals, use reference panel to phase
+indv=$(wc -l ${targetdata}.fam | cut -f 1 -d ' ')
+echo "There are $indv individuals"
+minindiv=100
+if [ $indv -lt $minindiv ]; then
+    flags="$flags --input-ref ${refhaps} ${reflegend} ${refsample}"
+    echo "Using reference set to phase data" #this can be a bit slower
+fi
+
 ${shapeit2} --input-bed ${chrdata}.bed ${chrdata}.bim ${chrdata}.fam --input-map ${refgmap} --output-max ${hapout}.haps ${hapout}.sample ${flags}
