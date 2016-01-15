@@ -49,6 +49,10 @@ cd ${targetdatadir}
 # extract chromosome 
 ${plink} --noweb --bfile ${originaldata} --chr ${chr} --make-bed --out ${chrdata}
 
+# 3. Some SNP positions will match but SNP IDs will have changed
+cp ${chrdata}.bim ${chrdata}.bim.orig-snp-ids
+R --no-save --args ${chrdata}.bim ${reflegend} ${chrdata}.newpos ${refphase} < ${rs_updateR}
+
 # find SNPs not present in reference, create new SNP order based on reference positions
 # R --no-save --args ${chrdata}.bim ${reflegend} ${chrdata}.newpos < ${positionsR}
 if [ -e ${chrdata}.newpos.missingsnps ]; then
