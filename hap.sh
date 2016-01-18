@@ -39,7 +39,7 @@ flags="--thread 8 --noped"
 #fi
 
 # If less than 100 indivduals, use reference panel to phase
-indv=$(wc -l ${targetdata}.fam | cut -f 1 -d ' ')
+indv=$(wc -l ${targetdatadir}/${chrdata}.fam | cut -f 1 -d ' ')
 echo "There are $indv individuals"
 minindiv=100
 if [ $indv -lt $minindiv ]; then
